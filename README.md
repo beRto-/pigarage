@@ -5,6 +5,7 @@ During the day, it is expected that the door might be open for say 30 minutes - 
 
 Each garage door open / close event is logged in an SQLite database. This allows for historical tracking, which is used to send a daily summary text message letting me know the number of times the door was opened and closed that day. 
 
+![door state logging](images/garage_door_state.jpg)
 
 # Hardware
 The hardware for this project is simple, consisting of a single switch connected to a Raspberry Pi. The switch is a ![magnetic Reed switch](https://www.sparkfun.com/products/13247) connected on the main garage door. One side of this switch is connected to 5V on the Raspberry Pi, and the other side to an input pin (the software is currently configured for pin 38).
@@ -47,5 +48,6 @@ Similarly, a daytime alarm ("day_alarm") is sent for DOOROPEN longer than 30 min
     daytime_door_alarm = smsAlarmHandler( 'day alarm', sms_butler, user_phone_number, GARAGE_DOOR_STATE_GPIO_MAP['DOOROPEN'], 30, (10,20), 120, debug_mode=debug_mode, verbose=verbose )
 ```
 
+![system event logging](images/system_event_log.jpg)
 
 In order to send text messages, you will need a ![Twilio](www.twilio.com) account and Auth token (the details should be saved in a local file "twilio.txt"). There is some account setup needed, which is not covered here because Twilio has some good tutorials for getting started. To begin, you can use a free trial account that works the exact same way as a full account but runs out of credit after several months.
